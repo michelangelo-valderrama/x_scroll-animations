@@ -1,0 +1,244 @@
+---
+// https://developer.mozilla.org/en-US/blog/scroll-progress-animations-in-css/
+---
+
+<style>
+  @keyframes scaleProgress {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes colorChange {
+    from {
+      background-color: #a5f3fc;
+    }
+
+    to {
+      background-color: #a855f7;
+    }
+  }
+
+  @keyframes bounce {
+    to {
+      transform: translateY(+25vh);
+    }
+
+    from {
+      transform: translateY(-25vh);
+    }
+  }
+
+  @keyframes rotateAnimation {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .progress-bar {
+    height: 10px;
+    opacity: 90%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform-origin: 0 50%;
+    animation: scaleProgress auto linear, colorChange auto linear;
+    /* animation: scaleProgress auto steps(5), colorChange auto linear; */
+    animation-timeline: scroll(root block);
+  }
+
+  .progress-ball {
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    top: calc(50vh);
+    left: 1rem;
+    background-color: #a855f7;
+    border-radius: 50%;
+    animation: bounce auto linear 2 alternate;
+    animation-timeline: scroll(root);
+  }
+
+  #container {
+    overflow-y: scroll;
+    scroll-timeline: --squareTimeline y;
+    scroll-timeline: --squareTimeline vertical;
+    position: relative;
+  }
+
+  #square {
+    background-color: deeppink;
+    width: 100px;
+    height: 100px;
+    animation-name: rotateAnimation;
+    animation-duration: 1ms; /* Firefox requires this to apply the animation */
+    animation-timeline: --squareTimeline;
+    position: absolute;
+    bottom: 0;
+  }
+</style>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body class="bg-slate-50">
+    <main
+      class="w-auto max-w-2xl m-auto mt-[100px] mb-[80px] text-lg leading-7 text-gray-700"
+    >
+      <h1 class="text-center text-6xl text-black mb-10">
+        Scroll Bar Animation
+      </h1>
+      <section class="mb-4">
+        <h2 class="text-black text-2xl mb-2">Lorem ipsum dolor sit.</h2>
+        <p class="mb-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A ex,
+          laudantium assumenda iusto doloremque quas voluptate expedita earum
+          dignissimos ratione natus odit illo dolor. Qui quibusdam et excepturi
+          cupiditate similique. Fugit vero voluptates quas. Commodi temporibus
+          enim adipisci accusamus non eius molestias quis quae, nihil id, odio
+          illum consequatur maiores, omnis expedita iste! Alias illum quisquam,
+          nostrum totam quod non maxime rerum rem vel? Porro odit cupiditate,
+          reprehenderit obcaecati tempora voluptas id veritatis! Ipsam iusto
+          excepturi magni explicabo fugiat delectus officiis temporibus
+          asperiores eaque eius assumenda aspernatur sapiente velit voluptatibus
+          ab reprehenderit, quisquam eum, quas ex itaque harum distinctio neque.
+        </p>
+        <div
+          class="w-[500px] h-[400px] p-[50px] m-auto bg-slate-100 my-6"
+          id="container"
+        >
+          <div id="square"></div>
+          <div class="h-[600px]"></div>
+        </div>
+        <p class="mb-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
+          blanditiis doloribus. Delectus maiores blanditiis eos perspiciatis. At
+          excepturi sed distinctio, iste in temporibus quas sunt placeat atque
+          praesentium hic, vero recusandae? Placeat magnam fuga qui dolores eum
+          fugit ullam. Officiis!
+        </p>
+      </section>
+      <section class="mb-6">
+        <h2 class="text-black text-2xl mb-2">Lorem, ipsum.</h2>
+        <p class="mb-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+          eveniet voluptates totam incidunt vitae dolores odio id veniam iusto
+          neque amet odit ipsa, atque assumenda! Sequi saepe fugit consectetur.
+          Placeat quas laudantium, unde ducimus aut tempora illum ea laboriosam
+          nesciunt recusandae, totam nulla ratione soluta consequuntur, pariatur
+          necessitatibus ad sint veritatis! Officia veniam quisquam culpa eaque
+          beatae sit aliquam maxime! Numquam doloremque fuga hic exercitationem
+          obcaecati repudiandae deserunt molestiae eum quia facere eligendi,
+          similique quaerat sint necessitatibus vero sed beatae perspiciatis
+          corrupti quae harum. Totam amet hic ex rem saepe. Cum optio distinctio
+          ea voluptatibus a quis accusamus, accusantium eius? Repellat
+          distinctio autem porro laborum ducimus. Placeat aliquam esse illo
+          natus error similique, laborum ipsam quidem magnam repudiandae
+          provident fuga eligendi rerum omnis, modi debitis vero iusto alias
+          eaque, exercitationem nulla eum. Quae earum aliquid impedit, totam
+          soluta modi ipsum!
+        </p>
+        <section class="mt-6">
+          <h3 class="text-black text-xl mb-2 border-b-2">
+            Lorem ipsum dolor sit amet.
+          </h3>
+          <p class="mb-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+            animi dolore possimus enim necessitatibus aut nihil assumenda rerum
+            cumque quam, maiores error minus laborum et, quas dolorum ad
+            distinctio repellendus odit. Rem doloremque nostrum veniam iure,
+            recusandae iste tenetur. Ea, ad necessitatibus excepturi ratione
+            distinctio saepe placeat ipsa. Qui rerum veritatis autem nemo
+            nesciunt consequuntur fugiat, cum rem eaque delectus quam molestiae
+            molestias, eius eum magnam quos adipisci iusto facere sequi culpa
+            atque doloribus nulla. Aspernatur ab ipsa quidem impedit?
+          </p>
+        </section>
+      </section>
+      <section class="mb-6">
+        <h2 class="text-black text-2xl mb-2">Lorem ipsum dolor sit amet.</h2>
+        <p class="mb-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+          accusamus voluptates eum autem magni porro labore? Magnam iste ex
+          consectetur magni, perspiciatis, quas repellat quia assumenda
+          blanditiis sed tempore dolorum. Similique deleniti ad suscipit? Ipsum
+          exercitationem perferendis quidem illo praesentium voluptate
+          quibusdam, est deleniti fugiat impedit, repudiandae nesciunt eum quo
+          vel doloremque unde! Provident aliquid dolorum aperiam dignissimos
+          similique exercitationem, saepe incidunt nemo? Iste mollitia earum
+          inventore quidem aut officia ipsum, porro, minima harum culpa error
+          totam ex itaque eveniet!
+        </p>
+        <p class="mb-2">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis fuga
+          autem nisi illum! Molestiae, corrupti laudantium? Possimus ea
+          consectetur quasi aperiam asperiores perferendis hic amet quae
+          consequuntur dolores, atque corporis.
+        </p>
+        <section class="mt-4">
+          <h3 class="text-black text-xl mb-2 border-b-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </h3>
+          <p class="mb-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, quo!
+          </p>
+          <p class="mb-2">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem
+            quaerat voluptates est suscipit ducimus maiores repudiandae dicta,
+            consectetur, saepe facere temporibus beatae. Laboriosam aperiam
+            tenetur perspiciatis possimus eligendi illo molestiae vel ex, dicta
+            expedita quam architecto commodi dolore eveniet quos quo
+            repudiandae? Esse porro veritatis error! Magni cum, delectus ducimus
+            provident commodi necessitatibus nam nostrum earum fugiat quos
+            numquam vitae recusandae quia modi repellat. Eaque ex maxime modi!
+            Rem esse nobis enim quam eveniet unde cumque voluptates dicta ab
+            tempore?
+          </p>
+        </section>
+        <section class="mt-6">
+          <h3 class="text-black text-xl mb-2 border-b-2">
+            Lorem ipsum dolor sit amet consectetur.
+          </h3>
+          <p class="mb-2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam,
+            itaque modi necessitatibus illo sint sequi similique, consequuntur
+            ipsa atque, facilis sed possimus repellendus! Voluptas facilis eum
+            suscipit voluptatibus placeat omnis ab minus cum, iste ullam!
+            Veritatis cum vitae nihil fuga!
+          </p>
+          <p class="mb-2">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil
+            excepturi consequuntur libero magnam nemo nulla alias ab blanditiis,
+            architecto aliquam eos nostrum nesciunt fuga accusamus qui vitae,
+            rerum dolorem rem aspernatur. Quia est labore aspernatur doloribus
+            maxime, expedita mollitia, deserunt atque, alias possimus illo?
+            Nobis iste provident nemo deleniti reiciendis voluptatum ipsam?
+            Repellat dolore perspiciatis ratione, excepturi doloribus numquam?
+            Eligendi minima magnam tempore mollitia fugit? Omnis error tempore
+            inventore expedita optio consequatur, incidunt aliquid quaerat non
+            similique voluptates odio quos possimus, aut molestiae autem modi
+            dolorum! Omnis explicabo voluptate illum commodi. Harum totam
+            impedit doloribus eos ullam minus, in consequatur.
+          </p>
+        </section>
+      </section>
+      <p class="mb-10 text-center">Lorem ipsum dolor sit amet.</p>
+
+      <div class="progress-bar"></div>
+      <div class="progress-ball"></div>
+    </main>
+  </body>
+</html>
